@@ -3,7 +3,7 @@
 require_once("utils.php");
 
 if (get_params("REQUEST_METHOD") == "GET") {
-    $search_query = htmlspecialchars(get_params("search_query"));
+    $search_query = get_params("search_query") !== null ? htmlspecialchars(get_params("search_query")) : "";
 
     // Establecer la conexión con la base de datos
     require("datos-conexion.php");

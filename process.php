@@ -2,6 +2,7 @@
 require_once("utils.php");
 
 if (get_params("REQUEST_METHOD") == "POST") {
+    $id_meeting = htmlspecialchars(get_params('id_meeting'));
     $orgName = htmlspecialchars(get_params('orgName'));
     $meetingTitle = htmlspecialchars(get_params('meetingTitle'));
     $meetingDate = htmlspecialchars(get_params('meetingDate'));
@@ -18,6 +19,7 @@ if (get_params("REQUEST_METHOD") == "POST") {
     $nextMeeting = htmlspecialchars(get_params('nextMeeting'));
     $closingTime = htmlspecialchars(get_params('closingTime'));
     $closingRemarks = htmlspecialchars(get_params('closingRemarks'));
+    $action = htmlspecialchars(get_params('action'));
 
     // Establecer la conexión con la base de datos
     require("datos-conexion.php");
@@ -26,11 +28,25 @@ if (get_params("REQUEST_METHOD") == "POST") {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Preparar la sentencia SQL
-        $stmt = $conn->prepare("INSERT INTO minutas (orgName, meetingTitle, meetingDate, meetingTime, meetingPlace, facilitator, secretary, attendees, absentees, guests, agenda, discussion, newTopics, nextMeeting, closingTime, closingRemarks) 
-                                VALUES (:orgName, :meetingTitle, :meetingDate, :meetingTime, :meetingPlace, :facilitator, :secretary, :attendees, :absentees, :guests, :agenda, :discussion, :newTopics, :nextMeeting, :closingTime, :closingRemarks)");
+        if ($action == 'update') {
+            // Preparar la sentencia SQL para actualizar
+            $stmt = $conn->prepare("UPDATE minutas SET orgName = :orgName, meetingTitle = :meetingTitle, meetingDate = :meetingDate, 
+                                    meetingTime = :meetingTime, meetingPlace = :meetingPlace, facilitator = :facilitator, 
+                                    secretary = :secretary, attendees = :attendees, absentees = :absentees, guests = :guests, 
+                                    agenda = :agenda, discussion = :discussion, newTopics = :newTopics, nextMeeting = :nextMeeting, 
+                                    closingTime = :closingTime, closingRemarks = :closingRemarks WHERE id = :id_meeting");
 
-        // Bind parameters
+            // Bind parameters para la actualización
+            $stmt->bindParam(':id_meeting', $id_meeting);
+        } else {
+            // Preparar la sentencia SQL para insertar
+            $stmt = $conn->prepare("INSERT INTO minutas (orgName, meetingTitle, meetingDate, meetingTime, meetingPlace, facilitator, secretary, 
+                                    attendees, absentees, guests, agenda, discussion, newTopics, nextMeeting, closingTime, closingRemarks) 
+                                    VALUES (:orgName, :meetingTitle, :meetingDate, :meetingTime, :meetingPlace, :facilitator, :secretary, 
+                                    :attendees, :absentees, :guests, :agenda, :discussion, :newTopics, :nextMeeting, :closingTime, :closingRemarks)");
+        }
+
+        // Bind parameters comunes
         $stmt->bindParam(':orgName', $orgName);
         $stmt->bindParam(':meetingTitle', $meetingTitle);
         $stmt->bindParam(':meetingDate', $meetingDate);

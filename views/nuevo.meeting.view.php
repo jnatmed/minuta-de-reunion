@@ -6,7 +6,11 @@
         <h1>Pagina de Nuevo Meetings</h1>
     </header>
     
-    <?php require("parts/form.ingreso.view.php"); ?>
+    <main>
+        
+        <?php require("parts/form.ingreso.view.php"); ?>
+        
+    </main>
 
 </body>
 </html>
