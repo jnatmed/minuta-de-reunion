@@ -84,6 +84,8 @@
             <p><strong>Hora de finalización:</strong> <?= htmlspecialchars($meetingDetails['closingTime']); ?></p>
             <p><strong>Palabras finales:</strong> <?= nl2br(htmlspecialchars($meetingDetails['closingRemarks'])); ?></p>
         </footer>
+
+        <a href="#top" id="scrollLink" class="sticky-link"></a>
 </main>
 
 </body>

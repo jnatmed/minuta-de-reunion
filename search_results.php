@@ -13,7 +13,7 @@ if (get_params("REQUEST_METHOD") == "GET") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Preparar la consulta SQL para buscar minutas por palabras clave en el campo meetingTitle
-        $stmt = $conn->prepare("SELECT * FROM minutas WHERE meetingTitle LIKE :search_query");
+        $stmt = $conn->prepare("SELECT * FROM minutas WHERE meetingTitle LIKE :search_query OR orgName LIKE :search_query");
         $stmt->bindValue(':search_query', '%' . $search_query . '%', PDO::PARAM_STR);
         $stmt->execute();
 

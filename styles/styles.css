@@ -8,7 +8,7 @@ body {
 .sticky-link {
     content: "";
     display: none;  
-    background-image: url('./imgs/flecha-arriba.png');
+    background-image: url('../imgs/flecha-arriba.png');
     background-size: contain;  /* Asegurarse de que la imagen de fondo se ajuste bien */
     background-repeat: no-repeat;
     width: 50px;  /* Ajustar el ancho según sea necesario */
