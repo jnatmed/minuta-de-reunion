@@ -40,6 +40,7 @@
             <?php endwhile; ?>
         </tbody>
     </table>
+    <a href="#top" id="scrollLink" class="sticky-link"></a>
 </main>
 
 </body>

@@ -2,6 +2,26 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    position: relative;
+}
+
+.sticky-link {
+    content: "";
+    display: none;  
+    background-image: url('./imgs/flecha-arriba.png');
+    background-size: contain;  /* Asegurarse de que la imagen de fondo se ajuste bien */
+    background-repeat: no-repeat;
+    width: 50px;  /* Ajustar el ancho según sea necesario */
+    height: 50px;  /* Ajustar la altura según sea necesario */
+    position: sticky;
+    bottom: 18px;
+    left: 90vw;
+    z-index: 1000;  /* Asegurarse de que aparezca por encima de otros contenidos */
+    padding: 10px;  /* Añadir algo de padding si es necesario */
+}
+
+.sticky-link.show {
+    display: inline-block;  /* Mostrar cuando se añada la clase show */
 }
 
 /* Estilos para el encabezado */
