@@ -1,7 +1,7 @@
 <?php 
 
 $servername = "localhost";
-$dbname="minutas";
+$dbname="minutasDB";
 $username="root";
 $password="";
 $password="";
