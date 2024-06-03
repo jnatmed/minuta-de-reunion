@@ -1,5 +1,5 @@
 
-<nav>
+<nav class="no-imprimir">
     <ul>
         <li><a href="/views/nuevo.meeting.view.php">NUEVO MEETING</a></li>
         <li><a href="/index.php">BUSCAR MEETING</a></li>

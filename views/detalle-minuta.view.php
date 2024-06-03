@@ -18,7 +18,7 @@
             <p><strong>Lugar:</strong> <?= htmlspecialchars($meetingDetails['meetingPlace']); ?></p>
             <p><strong>Facilitador:</strong> <?= htmlspecialchars($meetingDetails['facilitator']); ?></p>
             <p><strong>Secretario:</strong> <?= htmlspecialchars($meetingDetails['secretary']); ?></p>
-            <h2 class="titulo-detalles">Lista de Asistentes</h2>
+            <h2 class="titulo-detalles">Division Produccion</h2>
             <table>
                 <thead>
                     <tr>
@@ -83,9 +83,11 @@
             <h2 class="titulo-detalles">Clausura</h2>
             <p><strong>Hora de finalización:</strong> <?= htmlspecialchars($meetingDetails['closingTime']); ?></p>
             <p><strong>Palabras finales:</strong> <?= nl2br(htmlspecialchars($meetingDetails['closingRemarks'])); ?></p>
+            <p class="firma">Firma Jefe Division</p>
         </footer>
 
-        <a href="#top" id="scrollLink" class="sticky-link"></a>
+        
+        <!-- <a href="#top" id="scrollLink" class="sticky-link"></a> -->
 </main>
 
 </body>

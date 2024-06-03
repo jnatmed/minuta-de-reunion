@@ -158,3 +158,28 @@ button:hover {
 .titulo-detalles {
     text-align: left;
 }
+
+.firma{
+    display: none;
+    border: 1px solid black;
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    padding-top: 10px;
+    /* align-content: center; */
+    position: absolute;
+    bottom: -150px;
+    left: 55%;
+}
+
+@media print {
+    /* Ocultar elementos con la clase .no-imprimir */
+    .no-imprimir, .sticky-link {
+        display: none;
+    }
+
+    .firma{
+        display: inline-block;
+    }
+
+}
