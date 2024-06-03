@@ -4,4 +4,3 @@ $servername = "localhost";
 $dbname="minutasDB";
 $username="root";
 $password="";
-$password="";
