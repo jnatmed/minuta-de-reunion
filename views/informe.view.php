@@ -56,7 +56,7 @@
             </section>
         
             <section>
-                <h2>Orden del Día</h2>
+                <h2 class="titulo-detalles">Orden del Día</h2>
                 <ol>
                     <?php foreach (explode("\n", $agenda) as $item)  : ?>
                         <li> <?= trim($item) ?>. </li>
@@ -65,22 +65,22 @@
             </section>
         
             <section>
-                <h2>Desarrollo de la Reunión</h2>
+                <h2 class="titulo-detalles">Desarrollo de la Reunión</h2>
                 <p><?= nl2br($discussion); ?></p>
             </section>
         
             <section>
-                <h2>Temas Nuevos</h2>
+                <h2 class="titulo-detalles">Temas Nuevos</h2>
                 <p><?= nl2br($newTopics); ?></p>
             </section>
         
             <section>
-                <h2>Próxima Reunión</h2>
+                <h2 class="titulo-detalles">Próxima Reunión</h2>
                 <p><?= $nextMeeting; ?></p>
             </section>
         
             <footer>
-                <h2>Clausura</h2>
+                <h2 class="titulo-detalles">Clausura</h2>
                 <p><strong>Hora de finalización:</strong> <?= $closingTime; ?></p>
                 <p><strong>Palabras finales:</strong> <?= nl2br($closingRemarks); ?></p>
             </footer>
