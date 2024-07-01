@@ -85,6 +85,8 @@
                 <p><strong>Palabras finales:</strong> <?= nl2br($closingRemarks); ?></p>
             </footer>
 
+            </div>
+
             <a href="#top" id="scrollLink" class="sticky-link"></a>
     </main>
 

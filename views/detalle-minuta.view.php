@@ -78,12 +78,15 @@
             <h2 class="titulo-detalles">Próxima Reunión</h2>
             <p><?= htmlspecialchars($meetingDetails['nextMeeting']); ?></p>
         </section>
+
+        
         
         <footer>
             <h2 class="titulo-detalles">Clausura</h2>
             <p><strong>Hora de finalización:</strong> <?= htmlspecialchars($meetingDetails['closingTime']); ?></p>
             <p><strong>Palabras finales:</strong> <?= nl2br(htmlspecialchars($meetingDetails['closingRemarks'])); ?></p>
-            <p class="firma">Firma Jefe Division</p>
+            <p class="firma firma-izquierda">Firma</p>
+            <p class="firma firma-derecha">Firma</p>
         </footer>
 
         

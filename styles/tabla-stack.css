@@ -1,0 +1,46 @@
+/* Estilos básicos de la tabla */
+.table-responsive {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-responsive thead {
+    background-color: #f2f2f2;
+}
+
+.table-responsive th, .table-responsive td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 600px) {
+    .table-responsive, .table-responsive thead, .table-responsive tbody, .table-responsive th, .table-responsive td, .table-responsive tr {
+        display: block;
+    }
+
+    .table-responsive thead tr {
+        display: none;
+    }
+
+    .table-responsive tr {
+        margin-bottom: 15px;
+    }
+
+    .table-responsive td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .table-responsive td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}

@@ -1,4 +1,4 @@
-<form action="../process.php" method="post">
+<form action="../process.php" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id_meeting" value="<?= htmlspecialchars($meetingDetails['id']) ?>">
     
     <label for="orgName">Nombre de la Organización:</label>
@@ -48,8 +48,11 @@
 
     <label for="closingRemarks">Palabras Finales:</label>
     <textarea id="closingRemarks" name="closingRemarks" required><?= htmlspecialchars($meetingDetails['closingRemarks']) ?></textarea>
-
     
+    <div class="drop-zone" id="drop-zone">Arrastra y suelta tu archivo aquí o haz click para subir</div>
+    <input type="file" id="file-input" name="file" class="hidden" accept=".pdf,.doc,.docx">
+
+
     <button type="submit" name="action" value="<?= $action === 'update' ? 'update' : 'new' ?>">
         <?= $action === 'update' ? 'Actualizar Meeting' : 'Enviar Nuevo Formulario' ?>
     </button>

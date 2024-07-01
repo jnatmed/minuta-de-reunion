@@ -1,0 +1,16 @@
+.drop-zone {
+    border: 2px dashed #cccccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    /* color: #cccccc; */
+    transition: background-color 0.3s;
+}
+.drop-zone.dragover {
+    background-color: #f0f0f0;
+    border-color: #666666;
+}
+.hidden {
+    display: none;
+}

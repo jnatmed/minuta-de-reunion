@@ -1,5 +1,24 @@
 <?php
 require_once("utils.php");
+require_once('ArchivoManejador.php');
+
+require 'vendor/autoload.php';
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+// Crea un nuevo logger
+$log = new Logger('minutas_log');
+
+// Añade un handler para escribir registros en un archivo
+$log->pushHandler(new StreamHandler('logs/app.log', Logger::DEBUG));
+
+
+$log->info("upload: ", [$uploadDir]);
+
+// Crear una instancia del manejador de archivos
+$archivoManejador = new ArchivoManejador();
+
 
 if (get_params("REQUEST_METHOD") == "POST") {
     $id_meeting = htmlspecialchars(get_params('id_meeting'));
@@ -29,22 +48,44 @@ if (get_params("REQUEST_METHOD") == "POST") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         if ($action == 'update') {
+
+            $log->info("file: ", [$_FILES]);
+
+            if(isset($_FILES["file"])){
+                $file = $_FILES["file"];
+
+                try {
+                    // Intentar subir el archivo PDF usando la instancia de ArchivoManejador
+                    $documentPath = $archivoManejador->subirArchivoPDF($file);
+                    $log->info("El archivo ha sido subido correctamente como '$nombreArchivo'.");
+                } catch (Exception $e) {
+                    $log->error("Error: " . $e->getMessage());
+                }
+            }
+
             // Preparar la sentencia SQL para actualizar
             $stmt = $conn->prepare("UPDATE minutas SET orgName = :orgName, meetingTitle = :meetingTitle, meetingDate = :meetingDate, 
                                     meetingTime = :meetingTime, meetingPlace = :meetingPlace, facilitator = :facilitator, 
                                     secretary = :secretary, attendees = :attendees, absentees = :absentees, guests = :guests, 
                                     agenda = :agenda, discussion = :discussion, newTopics = :newTopics, nextMeeting = :nextMeeting, 
-                                    closingTime = :closingTime, closingRemarks = :closingRemarks WHERE id = :id_meeting");
+                                    closingTime = :closingTime, closingRemarks = :closingRemarks, documentPath = :documentPath WHERE id = :id_meeting");
 
             // Bind parameters para la actualización
             $stmt->bindParam(':id_meeting', $id_meeting);
+            $stmt->bindParam(':documentPath', $documentPath);
         } else {
             // Preparar la sentencia SQL para insertar
             $stmt = $conn->prepare("INSERT INTO minutas (orgName, meetingTitle, meetingDate, meetingTime, meetingPlace, facilitator, secretary, 
-                                    attendees, absentees, guests, agenda, discussion, newTopics, nextMeeting, closingTime, closingRemarks) 
+                                    attendees, absentees, guests, agenda, discussion, newTopics, nextMeeting, closingTime, closingRemarks, documentPath) 
                                     VALUES (:orgName, :meetingTitle, :meetingDate, :meetingTime, :meetingPlace, :facilitator, :secretary, 
-                                    :attendees, :absentees, :guests, :agenda, :discussion, :newTopics, :nextMeeting, :closingTime, :closingRemarks)");
+                                    :attendees, :absentees, :guests, :agenda, :discussion, :newTopics, :nextMeeting, :closingTime, :closingRemarks, :documentPath)");
+            // Bind parameters para la inserción
+            $stmt->bindParam(':documentPath', $documentPath);
         }
+
+        /**
+         * script que lee el archivo y devuelve un nombre de archivo si es que todo va bien. 
+         */
 
         // Bind parameters comunes
         $stmt->bindParam(':orgName', $orgName);
