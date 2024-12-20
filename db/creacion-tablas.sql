@@ -15,5 +15,6 @@ CREATE TABLE minutas (
     newTopics TEXT,
     nextMeeting TEXT,
     closingTime TIME,
-    closingRemarks TEXT
+    closingRemarks TEXT,
+    documentPath TEXT,
 );

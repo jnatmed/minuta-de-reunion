@@ -6,15 +6,16 @@ require 'vendor/autoload.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Level;
 
 // Crea un nuevo logger
 $log = new Logger('minutas_log');
 
 // Añade un handler para escribir registros en un archivo
-$log->pushHandler(new StreamHandler('logs/app.log', Logger::DEBUG));
+$log->pushHandler(new StreamHandler('logs/app.log', Level::Debug));
 
 
-$log->info("upload: ", [$uploadDir]);
+// $log->info("upload: ", [$uploadDir]);
 
 // Crear una instancia del manejador de archivos
 $archivoManejador = new ArchivoManejador();
